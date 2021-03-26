@@ -1,0 +1,33 @@
+
+#Scripts Made In Linux#
+
+Sed Activity 
+sed s/INCORRECT_PASSWORD/ACCESS_DENIED/ LogA.txt > access_denied.txt
+awk '{print $4, $6}' access_denied.txt > filtered_logs.txt
+
+Lucky Duck Investigations
+cat $1_Dealer_schedule | awk -F" " '{print $1,$2,$5,$6}' | grep "$2" >> Dealer.times.txt
+
+script.sh
+#!/bin/bash
+width=72
+for i in ${0}; do
+    lines="$(wc -l < $1 | sed 's/ //g')"
+    chars="$(wc -c < $1 | sed 's/ //g')"
+    owner="$(ls -ld $1 | awk '{print $3}')"
+    echo "-----------------------------------------------------------------"
+    echo "File $1 ($lines lines, $chars characters, owned by $owner):"
+    echo "-----------------------------------------------------------------"
+    while read line
+    do
+        if [ ${#line} -gt $width ]
+        then
+        echo "$line" | fmt | sed -e '$1/^/  /' -e '2,$s/^/+ /'
+        else
+        echo "  $line"
+        fi
+    done < '/var/tmp/5galf'
+    echo "-----------------------------------------------------------------"
+
+
+
